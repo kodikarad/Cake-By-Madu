@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Cake by Madu</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="admin.js" defer></script>
+</head>
+<body style="background-color: #f4f6f8;">
+    <header>
+        <a href="index.html" class="brand">Cake by Madu <span style="font-size: 1rem; color: #666;">| Admin</span></a>
+        <nav class="nav-links">
+            <a href="index.html">View Store</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </nav>
+    </header>
+
+    <div id="authNotice" style="text-align: center; padding: 4rem; display: none;">
+        <h2>Access Denied</h2>
+        <p>You must be logged in as an administrator to view this page.</p>
+        <a href="index.html" class="btn-primary" style="margin-top: 1rem;">Back to Store</a>
+    </div>
+
+    <div id="adminContent" class="admin-container" style="display: none;">
+        <div class="admin-header">
+            <h2>Dashboard</h2>
+            <button class="btn-primary" id="addCakeBtn">+ Add New Cake</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Orders Section (Placeholder for future) -->
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">Recent Orders (Coming Soon)</h3>
+                <p style="color: #666;">Orders are currently managed via WhatsApp.</p>
+            </div>
+
+            <!-- Cake Management Section -->
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">Manage Cakes</h3>
+                
+                <table id="cakesTable">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price (1Kg)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cakesList">
+                        <!-- Populated by JS -->
+                        <tr><td colspan="4">Loading cakes...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Cake Modal -->
+    <div class="modal" id="cakeModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCakeModal">&times;</span>
+            <h2 id="modalTitle">Add New Cake</h2>
+            
+            <form id="cakeForm" style="margin-top: 1.5rem;">
+                <input type="hidden" id="cakeId">
+                <div class="form-group">
+                    <label for="cakeName">Cake Name</label>
+                    <input type="text" id="cakeName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cakeDesc">Description</label>
+                    <textarea id="cakeDesc" class="form-control" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cakePrice">Base Price (LKR per Kg)</label>
+                    <input type="number" id="cakePrice" class="form-control" required min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="cakeImage">Photo URL (Temporary)</label>
+                    <input type="url" id="cakeImage" class="form-control" placeholder="https://..." required>
+                    <small style="color: #666;">Note: In a full app, this would be an image upload field directly to Firebase Storage.</small>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Save Cake</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

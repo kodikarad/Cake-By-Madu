@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake by Madu | Delicious Custom Cakes</title>
+    <meta name="description" content="Order beautiful and delicious custom cakes online. Select your design, weight, and get it delivered!">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load App script as module -->
+    <script type="module" src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <a href="#" class="brand">Cake by Madu</a>
+        <nav class="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#" id="loginBtn">Login</a>
+            <a href="admin.html" id="adminLink" style="display: none;">Admin</a>
+            <a href="#" id="logoutBtn" style="display: none;">Logout</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Handcrafted with Love</h1>
+        <p>Discover our beautiful collection of custom cakes for your special moments.</p>
+        <a href="#menu" class="btn-primary">Order Now</a>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2>Our Cake Designs</h2>
+        <div class="cake-grid" id="cakeGrid">
+            <!-- Cakes will be loaded here dynamically from Firebase -->
+            <p>Loading our delicious cakes...</p>
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeOrderModal">&times;</span>
+            <h2 id="modalCakeName">Order Cake</h2>
+            <p id="modalCakeDesc" style="color: var(--accent-color); margin-bottom: 1rem;"></p>
+            
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="cakeWeight">Select Weight (Kg)</label>
+                    <select id="cakeWeight" class="form-control" required>
+                        <option value="1">1 Kg</option>
+                        <option value="1.5">1.5 Kg</option>
+                        <option value="2">2 Kg</option>
+                        <option value="custom">Custom Weight...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="customWeightGroup" style="display: none;">
+                    <label for="customWeight">Enter Custom Weight (Kg)</label>
+                    <input type="number" id="customWeight" class="form-control" step="0.5" min="0.5">
+                </div>
+
+                <div class="delivery-toggle">
+                    <input type="checkbox" id="requireDelivery">
+                    <label for="requireDelivery" style="margin: 0;">Require Delivery?</label>
+                </div>
+
+                <div id="deliveryDetails">
+                    <div class="form-group">
+                        <label for="deliveryAddress">Delivery Address</label>
+                        <textarea id="deliveryAddress" class="form-control" rows="3" placeholder="Enter full address..."></textarea>
+                    </div>
+                </div>
+
+                <div class="total-display">
+                    <span>Total Amount:</span>
+                    <span id="totalPrice">LKR 0.00</span>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">Place Order via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <h2>Sign In</h2>
+            <p style="margin-bottom: 2rem;">Please sign in to place your order.</p>
+            <button id="googleLoginBtn" class="auth-btn">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                Sign in with Google
+            </button>
+        </div>
+    </div>
+</body>
+</html>
